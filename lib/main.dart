@@ -27,7 +27,7 @@ class StoryPage extends StatefulWidget {
 class _StoryPageState extends State<StoryPage> {
   @override
   Widget build(BuildContext context) {
-    Scaffold(
+    return Scaffold(
       body: Container(
         //TODO: Step 1 - Add background.png to this Container as a background image.
         padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
