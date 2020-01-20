@@ -52,23 +52,19 @@ class _StoryPageState extends State<StoryPage> {
                 ),
               ),
               buildChoiceButton(
-                  choice: _storyBrain.getChoice1(),
-                  color: Colors.red,
-                  onPressed: () {
-                    //Choice 1 made by user.
-                    //TODO: Step 18 - Call the nextStory() method from storyBrain and pass the number 1 as the choice made by the user.
-                  }),
+                choice: _storyBrain.getChoice1(),
+                color: Colors.red,
+                onPressed: () => setState(() => _storyBrain.nextStory(1)),
+              ),
               SizedBox(
                 height: 20.0,
               ),
-              //TODO: Step 28 - Set the "visible" property of the Visibility Widget to equal the output from the buttonShouldBeVisible() method in the storyBrain.
               buildChoiceButton(
-                  choice: _storyBrain.getChoice2(),
-                  color: Colors.blue,
-                  onPressed: () {
-                    //Choice 2 made by user.
-                    //TODO: Step 19 - Call the nextStory() method from storyBrain and pass the number 2 as the choice made by the user.
-                  }),
+                choice: _storyBrain.getChoice2(),
+                color: Colors.blue,
+                onPressed: () => setState(() => _storyBrain.nextStory(2)),
+                visible: _storyBrain.buttonShouldBeVisible(),
+              ),
             ],
           ),
         ),
@@ -76,11 +72,12 @@ class _StoryPageState extends State<StoryPage> {
     );
   }
 
-  Widget buildChoiceButton(
-      {bool visible = true,
-      String choice,
-      Color color,
-      VoidCallback onPressed}) {
+  Widget buildChoiceButton({
+    String choice,
+    Color color,
+    VoidCallback onPressed,
+    bool visible = true,
+  }) {
     return Visibility(
       child: Expanded(
         flex: 2,
