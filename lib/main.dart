@@ -53,47 +53,51 @@ class _StoryPageState extends State<StoryPage> {
                   ),
                 ),
               ),
-              Expanded(
-                flex: 2,
-                child: FlatButton(
+              buildChoiceButton(
+                  choice: _storyBrain.getChoice1(),
+                  color: Colors.red,
                   onPressed: () {
                     //Choice 1 made by user.
                     //TODO: Step 18 - Call the nextStory() method from storyBrain and pass the number 1 as the choice made by the user.
-                  },
-                  color: Colors.red,
-                  child: Text(
-                    _storyBrain.getChoice1(),
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
+                  }),
               SizedBox(
                 height: 20.0,
               ),
-              Expanded(
-                flex: 2,
-                //TODO: Step 26 - Use a Flutter Visibility Widget to wrap this FlatButton.
-                //TODO: Step 28 - Set the "visible" property of the Visibility Widget to equal the output from the buttonShouldBeVisible() method in the storyBrain.
-                child: FlatButton(
+              //TODO: Step 28 - Set the "visible" property of the Visibility Widget to equal the output from the buttonShouldBeVisible() method in the storyBrain.
+              buildChoiceButton(
+                  choice: _storyBrain.getChoice2(),
+                  color: Colors.blue,
                   onPressed: () {
                     //Choice 2 made by user.
                     //TODO: Step 19 - Call the nextStory() method from storyBrain and pass the number 2 as the choice made by the user.
-                  },
-                  color: Colors.blue,
-                  child: Text(
-                    _storyBrain.getChoice2(),
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
+                  }),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildChoiceButton(
+      {bool visible = true,
+      String choice,
+      Color color,
+      VoidCallback onPressed}) {
+    return Visibility(
+      child: Expanded(
+        flex: 2,
+        child: FlatButton(
+          onPressed: onPressed,
+          color: color,
+          child: Text(
+            choice,
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+        ),
+      ),
+      visible: visible,
     );
   }
 }
